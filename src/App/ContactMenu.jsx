@@ -46,6 +46,8 @@ const ContactMenu = ({
         contact={contact}
         name={name}
         number={number}
+        updateContact={updateContact}
+        index={index}
       />
     </>
   );

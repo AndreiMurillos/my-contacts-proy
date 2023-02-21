@@ -12,22 +12,26 @@ import {
   Input,
   ModalFooter,
   Button,
-  useDisclosure,
 } from '@chakra-ui/react';
 
-const UpdateContact = ({ isOpen, onClose, contact, name, number }) => {
-  //   const { updateContact } = props;
-  //   const { index } = props;
-  //   const { contact } = props;
-  //   const [name, setName] = useState(contact.name);
-  //   const [number, setNumber] = useState(contact.number);
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     updateContact(index, { name, number });
-  //     setName('');
-  //     setNumber('');
-  //     onClose();
-  //   };
+const UpdateContact = ({
+  isOpen,
+  onClose,
+  contact,
+  name,
+  number,
+  updateContact,
+  index,
+}) => {
+  const [newName, setNewName] = useState(name);
+  const [newNumber, setNewNumber] = useState(number);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateContact(index, newName, newNumber);
+    onClose();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -36,15 +40,30 @@ const UpdateContact = ({ isOpen, onClose, contact, name, number }) => {
         <ModalBody pb={6}>
           <FormControl>
             <FormLabel>Nombre</FormLabel>
-            <Input type='text' placeholder='Ingrese su nombre' value={name} />
+            <Input
+              type='text'
+              placeholder='Ingrese su nombre'
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+            />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Numero</FormLabel>
-            <Input type='text' placeholder='Ingrese su numero' value={number} />
+            <Input
+              type='text'
+              placeholder='Ingrese su numero'
+              value={newNumber}
+              onChange={(e) => setNewNumber(e.target.value)}
+            />
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme='blue' mr={3}>
+          <Button
+            type='submit'
+            colorScheme='blue'
+            mr={3}
+            onClick={handleSubmit}
+          >
             Guardar
           </Button>
           <Button variant='ghost' onClick={onClose}>
