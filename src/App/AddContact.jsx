@@ -64,7 +64,7 @@ const AddContact = ({ addContact }) => {
             <FormControl mt={4}>
               <FormLabel>Número</FormLabel>
               <Input
-                type='text'
+                type='number'
                 placeholder='Ingrese su número'
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
